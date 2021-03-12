@@ -6,7 +6,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
       t.text       :text
       t.string     :status
       
-      t.references :target, null: false, foreign_key: true
+      t.references :target, null: false, foreign_key: { to_table: :users }
       t.references :task  , null: false, foreign_key: true
 
       t.references :object, null: false, polymorphic: true

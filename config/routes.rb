@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-
+  
+  devise_for :users
+  
   resources :lists
-  resources :projects
   resources :users
   resources :teams
+  resources :tasks
   resources :sections
-
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  resources :projects
+  
   root to: 'users#show'
 
 end

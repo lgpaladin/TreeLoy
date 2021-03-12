@@ -8,10 +8,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
-     @project = set_project
-#    @project = Project.find_by(title: 'proj1')
-#    @lists   = @project.lists.sort_by {|list| list.position}
-     @lists   = @project.lists
+    @lists    = @project.lists.sort_by {|list| list.position}
+
+#   @lists   = @project.lists
   end
 
   # GET /projects/new

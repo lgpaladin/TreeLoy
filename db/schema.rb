@@ -66,16 +66,16 @@ ActiveRecord::Schema.define(version: 2021_03_09_191253) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "title"
-    t.text "description"
-    t.date "data_end"
-    t.integer "hours"
-    t.integer "position"
     t.string "state"
+    t.integer "hours"
+    t.date "data_end"
+    t.integer "position"
+    t.text "description"
     t.integer "list_id", null: false
     t.integer "owner_id", null: false
-    t.integer "developer_id", null: false
     t.integer "project_id", null: false
-    t.integer "section_id", null: false
+    t.integer "section_id"
+    t.integer "developer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["developer_id"], name: "index_tasks_on_developer_id"
@@ -113,15 +113,15 @@ ActiveRecord::Schema.define(version: 2021_03_09_191253) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "autors"
   add_foreign_key "comments", "tasks"
+  add_foreign_key "comments", "users", column: "autor_id"
   add_foreign_key "lists", "projects"
-  add_foreign_key "notifications", "targets"
   add_foreign_key "notifications", "tasks"
+  add_foreign_key "notifications", "users", column: "target_id"
   add_foreign_key "projects", "teams"
-  add_foreign_key "tasks", "developers"
   add_foreign_key "tasks", "lists"
-  add_foreign_key "tasks", "owners"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "sections"
+  add_foreign_key "tasks", "users", column: "developer_id"
+  add_foreign_key "tasks", "users", column: "owner_id"
 end
