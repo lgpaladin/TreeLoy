@@ -13,6 +13,7 @@ user ||= User.create(name: 'Admin',
 									   password: '123456',
 									   role: 'admin')
 
+
 team = Team.find_or_create_by(title: 'team1')
 team.users = [user]
 

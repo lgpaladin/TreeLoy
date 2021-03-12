@@ -2,12 +2,17 @@ Rails.application.routes.draw do
   
   devise_for :users
   
-  resources :lists
+  resources :projects do
+    resources :lists do
+      resources :tasks do
+      end
+    end
+  end
+
   resources :users
-  resources :teams
-  resources :tasks
+  resources :teams  
   resources :sections
-  resources :projects
+  
   
   root to: 'users#show'
 
