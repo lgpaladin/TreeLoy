@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
   resources :lists
-  resources :project
-  resources :user
-  resources :team
-  resources :section
+  resources :projects
+  resources :users
+  resources :teams
+  resources :sections
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root to: 'lists#index'
+  root to: 'users#show'
 
 end

@@ -6,9 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(name: 'Admin',
-					  email: 'lgpaladin@gmail.com',
-					  password: '123456',
-					  role: 'admin')
+user = User.find_by(name: 'Admin', email: 'lgpaladin@gmail.com')
+
+user ||= User.create(name: 'Admin',
+									   email: 'lgpaladin@gmail.com',
+									   password: '123456',
+									   role: 'admin')
+
+team = Team.find_or_create_by(title: 'team1')
+team.users = [user]
+
+Project.find_or_create_by(title: 'proj1', team: team)
+Project.find_or_create_by(title: 'proj2', team: team)
 
 

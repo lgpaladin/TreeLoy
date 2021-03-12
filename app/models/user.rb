@@ -5,10 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  belongs_to :team
+  has_and_belongs_to_many :teams
 
   has_many :notifications 
   has_many :comments
   has_many :tasks
+  has_many :projects, through: :teams
 
 end

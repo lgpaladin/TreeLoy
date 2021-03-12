@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   
-  has_many 	 :user
+  has_and_belongs_to_many :users
 
-  belongs_to :project
+  has_many :projects
 
 end

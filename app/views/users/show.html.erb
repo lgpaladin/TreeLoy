@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Teams:</strong>
+  <% @teams.each do |team| %>
+  	<%= team.title %>
+  	<p>
+  		<strong>Projects:</strong>
+  		<ul>
+	  		<% @projects.where(team_id: team.id).each do |project| %>
+	  			<li><%= link_to project.title, project_path(project) %></li>
+	  		<% end %>
+  		</ul>
+  	</p>	
+  <% end %>
+</p>

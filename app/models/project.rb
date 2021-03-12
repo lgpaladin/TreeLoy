@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
 
-	has_one  :team
+	belongs_to :team
 
 	has_many :lists
 	has_many :tasks
