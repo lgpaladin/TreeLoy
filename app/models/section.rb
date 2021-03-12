@@ -1,5 +1,5 @@
 class Section < ApplicationRecord
 
-	has_man :tasks
+	has_many :tasks
 
 end

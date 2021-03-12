@@ -16,7 +16,55 @@ user ||= User.create(name: 'Admin',
 team = Team.find_or_create_by(title: 'team1')
 team.users = [user]
 
-Project.find_or_create_by(title: 'proj1', team: team)
+proj1 = Project.find_or_create_by(title: 'proj1', team: team)
 Project.find_or_create_by(title: 'proj2', team: team)
+
+list1 = List.find_by(title: 'planned')
+
+list1 ||= List.create(title: 'planned',
+									   project_id: proj1.id)
+
+list2 = List.find_by(title: 'in the process')
+
+list2 ||= List.create(title: 'in the process',
+									   project_id: proj1.id,
+									   position: 1)
+
+
+list3 = List.find_by(title: 'completed')
+
+list3 ||= List.create(title: 'completed',
+									   project_id: proj1.id,
+									   position: 2)
+
+
+section = Section.find_by(title: 'front-end')
+
+task = Task.find_by(title: 'task 1')
+
+task ||= Task.create(title: 'task 1',
+									    list_id: list1.id,
+									    section_id: section.id,
+									    owner_id: 1,
+									    developer_id: 1,
+									    description: 'bla-bla-bla bla-bla')
+
+task = Task.find_by(title: 'task 2')
+
+task ||= Task.create(title: 'task 2',
+									    list_id: list1.id,
+									    section_id: section.id,
+									    owner_id: 1,
+									    developer_id: 1,
+									    description: 'bla-bla-bla bla-bla')
+
+task = Task.find_by(title: 'task 3')
+
+task ||= Task.create(title: 'task 3',
+									    list_id: list2.id,
+									    section_id: section.id,
+									    owner_id: 1,
+									    developer_id: 1,
+									    description: 'bla-bla-bla bla-bla')
 
 

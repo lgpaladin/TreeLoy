@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+
+<div>
+  <div style="float: left">
+    <p>
+      <strong>Title:</strong>
+      <%= @project.title %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @project.desctiption %>
+    </p>
+
+    <p>
+      <strong>Link to site:</strong>
+      <%= @project.link_to_site %>
+    </p>
+
+    <p>
+      <strong>Link to manual:</strong>
+      <%= @project.link_to_manual %>
+    </p>
+
+    <p>
+      <strong>State:</strong>
+      <%= @project.state %>
+    </p>
+
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+  <%= link_to 'Back', projects_path %>
+  
+  </div>
+
+  <% @lists.each do |list| %>
+    <div class="card bg-light mb-3" style="float: left; width: 24%">
+      <div class="card-header"> <%= list.title %> </div>
+      
+      <div class="card-body">
+<!--    <h5 class="card-title">Light card title</h5>
+-->        
+        <% list.tasks.each do |task| %>
+          <p class="card-text">
+            <%= link_to task.title, task_path(task) %>
+          </p>  
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
