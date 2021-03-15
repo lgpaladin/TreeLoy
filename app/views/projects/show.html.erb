@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
- <div>
+<div id="project-block" project_id="<%= @project.id %>">
   <div>
     <p>
       <strong>Title:</strong>
@@ -14,7 +14,7 @@
   </div>
 
   <% @lists.each do |list| %>
-    <div class="card bg-light mb-3" style="float: left; width: 24%; margin: 5px; height: 40vw">
+    <div class="card bg-light mb-3 list-block" style="float: left; width: 24%; margin: 5px; height: 40vw; z-index: -100" list_id="<%= list.id %>">
       <div class="card-header"> 
         <div style="float: left; width: 100px">
           <%= list.title %>
@@ -24,12 +24,13 @@
         </div> 
       </div>
       
-      <div class="card-body">
-<!--    <h5 class="card-title">Light card title</h5>
--->        
+      <div class="card-body" style='z-index: -100'>
+
         <% list.tasks.each do |task| %>
           <p class="card-text">
-            <%= link_to(task.title, project_list_task_path(project_id: @project.id,list_id: list.id, id: task.id))%>
+
+            <%= render partial: 'tasks/task', locals: {task: task} %>  
+
           </p>  
         <% end %>
       </div>

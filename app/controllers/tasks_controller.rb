@@ -37,10 +37,15 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     respond_to do |format|
+      puts task_params
+      puts @task.list_id
+      puts "-----------------------------------"
       if @task.update(task_params)
         format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.json { render json: {msg: "Task was successfully updated."}}
       else
         format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: {msg: "Error: bad parameters"}, status: 400}
       end
     end
   end
@@ -56,8 +61,11 @@ class TasksController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task)
-      .permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id)
+      if params[:to_list]
+        params.permit(:list_id)
+      else
+        params.require(:task).permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id)
+      end  
     end
 
     def set_depends
@@ -67,6 +75,7 @@ class TasksController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = @list.tasks.find(params[:id])
+      @task = @list.tasks.find(params[:id]) unless params[:to_list]
+      @task = Task.find(params[:id]) if params[:to_list]
     end
 end
