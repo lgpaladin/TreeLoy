@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_191253) do
+ActiveRecord::Schema.define(version: 2021_03_20_095152) do
 
   create_table "comments", force: :cascade do |t|
     t.text "text"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_191253) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name", null: false
+    t.string "name"
     t.string "role", default: "developer", null: false
     t.boolean "active", default: true
     t.string "reset_password_token"

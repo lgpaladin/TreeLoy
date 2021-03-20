@@ -17,7 +17,7 @@
     <p>
       <% @sections.each do |section| %>
         
-        <%= check_box_tag(section.id, true, class: 'form-check-input') %>
+        <%= check_box_tag(:sections, section.id, true, class: 'form-check-input section-point') %>
         <%= label_tag(section.id, section.title, class: 'form-check-label') %>
 
       <% end %>

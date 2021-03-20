@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :teams
 
-  has_many :notifications 
+  has_many :notifications
   has_many :comments
   has_many :tasks
   has_many :projects, through: :teams
