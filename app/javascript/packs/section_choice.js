@@ -1,25 +1,21 @@
 $(document).ready(function() {
-/*  console.log("1") */
-    var cards = document.getElementsByClassName('task-block');
-    var lists = document.getElementsByClassName('list-block');
-    var project_id = document.getElementById('project-block').getAttribute('project_id');
-    var isDown;
-    var offset;
-    var current_task;
-    var current_list = lists[0];
+	
+	console.log("1")
+  
+	//var checkboxes = document.getElementsByTagName('input');
+	var checkboxes = document.getElementsByClassName('form-check');
 
+  for (var i = 0; i < checkboxes.length; i++) {
+// 	if (checkboxes[i].type === 'checkbox') {
+    	checkboxes[i].addEventListener('change', checkbox_checked, true);
+    	console.log(checkboxes[i])
+//  }
+  }
 
-    var mouse_down = function (e) {
+  var checkbox_checked = function (e) {
+  	
+  	console.log(e.target.getAttribute('id').toString + ' - ' + e.target.getAttribute('name') + ' - ' + e.target.getAttribute('value') + ' - ' + e.target.getAttribute('checked'))
 
-        current_task = e.target.closest('.task-block');
-        current_task.style = 'width: 18rem; margin: 10px; z-index: 1000; position: absolute';
-        lists.style = 'float: left; width: 24%; margin: 5px; height: 40vw; z-index: -1000';
-
-        isDown = true;
-        offset = [
-                current_task.offsetLeft - e.clientX,
-                current_task.offsetTop  - e.clientY
-        ];
     };
 
 /*    function findAncestor (el, cls) {
@@ -27,7 +23,7 @@ $(document).ready(function() {
         return el;
     }
 */
-    var mouse_enter = function (e) {
+/*    var mouse_enter = function (e) {
         if (isDown) {
             current_list = e.target.closest(".list-block")
             console.log(e.target) 
@@ -45,7 +41,7 @@ $(document).ready(function() {
     }
 */
 
-    document.addEventListener('mouseover', mouse_enter, true);
+/*    document.addEventListener('mouseover', mouse_enter, true);
 
     document.addEventListener('mouseup', function (e) {
 
@@ -93,4 +89,5 @@ $(document).ready(function() {
             current_task.style.top  = (mousePosition.y + offset[1]) + 'px';
         }
     }, true);
+*/    
 });

@@ -9,8 +9,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1 or /projects/1.json
   def show
     @lists    = @project.lists.sort_by {|list| list.position}
+    @sections = Section.all
 
-#   @lists   = @project.lists
+  #  if params.permit[:]
+
+
   end
 
   # GET /projects/new

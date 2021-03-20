@@ -36,7 +36,7 @@ class SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: "Section was successfully updated." }
+        format.html { redirect_to sections_path, notice: "Section  #{ @section.title }  was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

@@ -10,6 +10,24 @@
       <strong>State:</strong>
       <%= @project.state %>
     </p>
+  </div>
+
+  <div class="form-check">
+
+    <p>
+      <% @sections.each do |section| %>
+        
+        <%= check_box_tag(section.id, true, class: 'form-check-input') %>
+        <%= label_tag(section.id, section.title, class: 'form-check-label') %>
+
+      <% end %>
+    </p>
+    <p>
+<!--      <%=
+          #collection_check_boxes :section_id, Section.all, :id, :title
+      %>
+-->      
+    </p>
 
   </div>
 
