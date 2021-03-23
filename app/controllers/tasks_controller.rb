@@ -14,7 +14,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-
   end
 
   # GET /tasks/1/edit
@@ -27,7 +26,7 @@ class TasksController < ApplicationController
     @task.owner = current_user
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_path(@project), notice: "Task was successfully created." }
+        format.html { redirect_to @project, notice: "Task was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +40,7 @@ class TasksController < ApplicationController
       puts @task.list_id
       puts "-----------------------------------"
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.html { redirect_to @project, notice: "Task was successfully updated." }
         format.json { render json: {msg: "Task was successfully updated."}}
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,7 +63,7 @@ class TasksController < ApplicationController
       if params[:to_list]
         params.permit(:list_id)
       else
-        params.require(:task).permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id)
+        params.require(:task).permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id, :section_id)
       end  
     end
 

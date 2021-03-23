@@ -13,12 +13,12 @@
   </div>
 
   <div class="form-check">
-
+  
     <p>
       <% @sections.each do |section| %>
         
         <%= check_box_tag(:sections, section.id, true, class: 'form-check-input section-point') %>
-        <%= label_tag(section.id, section.title, class: 'form-check-label') %>
+        <%= label_tag(section.id, section.title, class: 'form-check-label', style: 'margin-right: 20px') %>
 
       <% end %>
     </p>
@@ -26,13 +26,13 @@
 <!--      <%=
           #collection_check_boxes :section_id, Section.all, :id, :title
       %>
--->      
+-->
     </p>
 
   </div>
 
   <% @lists.each do |list| %>
-    <div class="card bg-light mb-3 list-block" style="float: left; width: 24%; margin: 5px; height: 40vw; z-index: -100" list_id="<%= list.id %>">
+    <div class="card bg-light mb-3 list-block" style="float: left; width: 24%; margin: 5px; min-height: 40vw; z-index: -100; height: auto" list_id="<%= list.id %>">
       <div class="card-header"> 
         <div style="float: left; width: 100px">
           <%= list.title %>

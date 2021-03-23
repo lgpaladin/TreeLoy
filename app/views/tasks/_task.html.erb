@@ -1,18 +1,20 @@
 <div class='card task-block in_section_<%= task.section.id if task.section %>' style='width: 18rem; margin: 10px; z-index: 0' task_id='<%= task.id %>' >
-  <div  class='card-body'>
-  	<div>
-    	<div style='float: left'>
+  <div class="card-header">
+    <div style='float: left'>
     		<h5 class='card-title' style='font-size: 20px'> <%= task.title %> </h5>
     	</div>
-    	<div style='float: left'>
+    	<div style='float: right'>
     		<small class="text-muted"> <%= task.section.title if task.section %> </small> 
-    	</div>	
-    </div>
+    	</div>
+  </div>	
+  <div  class='card-body'>
+  	
+   	<h6 class='card-subtitle mb-2 text-muted'> <%= task.state %> </h6>
+   	<p  class='card-text' style='font-size: 16px'>   <%= task.description %></p>
 
-    <h6 class='card-subtitle mb-2 text-muted'> <%= task.state %> </h6>
-    <p  class='card-text' style='font-size: 16px'>   <%= task.description %></p>
     <%= link_to( 'Back'  , project_path(task.project), class: 'btn btn-primary') %>
     <%= link_to( 'Edit'  , edit_project_list_task_path(project_id: task.project.id, list_id: task.list.id, id: task.id), class: 'btn btn-info') %>
 		<%= link_to( 'Delete', project_list_task_path(project_id: task.project.id, list_id: task.list.id, id: task.id), method: :delete, class: 'btn btn-danger') %>
+
   </div>
 </div>

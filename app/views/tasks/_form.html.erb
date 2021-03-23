@@ -43,6 +43,11 @@
     <%= form.label :state %>
     <%= form.text_field :state %>
   </div>
+  
+  <div class="field">
+    <%= form.label :section %>
+    <%= collection_select(:task, :section_id, Section.all, :id, :title,) %>
+  </div>  
 
   <div class="actions">
     <%= form.submit %>
