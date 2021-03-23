@@ -37,8 +37,12 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       puts task_params
-      puts @task.list_id
       puts "-----------------------------------"
+      if params[:add_dev]
+        @task.developer_ids = @task.developer_ids << params[:developer_id]
+        return
+      end
+
       if @task.update(task_params)
         format.html { redirect_to @project, notice: "Task was successfully updated." }
         format.json { render json: {msg: "Task was successfully updated."}}
@@ -62,6 +66,8 @@ class TasksController < ApplicationController
     def task_params
       if params[:to_list]
         params.permit(:list_id)
+      elsif params[:add_dev]
+        params.permit(:developer_id)
       else
         params.require(:task).permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id, :section_id, developer_ids: [])
       end  
