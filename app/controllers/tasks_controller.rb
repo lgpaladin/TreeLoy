@@ -63,7 +63,7 @@ class TasksController < ApplicationController
       if params[:to_list]
         params.permit(:list_id)
       else
-        params.require(:task).permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id, :section_id)
+        params.require(:task).permit(:title, :description, :data_end, :hours, :position, :state, :project_id, :list_id, :section_id, developer_ids: [])
       end  
     end
 

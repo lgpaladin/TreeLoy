@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_095152) do
+ActiveRecord::Schema.define(version: 2021_03_23_175842) do
 
   create_table "comments", force: :cascade do |t|
     t.text "text"
@@ -83,6 +83,13 @@ ActiveRecord::Schema.define(version: 2021_03_20_095152) do
     t.index ["owner_id"], name: "index_tasks_on_owner_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["section_id"], name: "index_tasks_on_section_id"
+  end
+
+  create_table "tasks_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.index ["task_id"], name: "index_tasks_users_on_task_id"
+    t.index ["user_id"], name: "index_tasks_users_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
