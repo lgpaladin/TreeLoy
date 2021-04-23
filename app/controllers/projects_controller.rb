@@ -3,17 +3,18 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    # {query: "Parking on central str.", lat: 35.876541. lng: -121.35464}
+    @projects = ProjectsSearchQuery.new(search_params).call
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @projects.to_json}
+    end
   end
 
   # GET /projects/1 or /projects/1.json
   def show
     @lists    = @project.lists.sort_by {|list| list.position}
     @sections = Section.all
-
-  #  if params.permit[:]
-
-
   end
 
   # GET /projects/new
@@ -42,7 +43,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: "Project was successfully updated." }
+        format.html { redirect_to @project, noice: "Project was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -66,5 +67,9 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:title, :desctiption, :link_to_site, :link_to_manual, :state)
+    end
+
+    def search_params
+      params.permit(:query, :lat, :lng, :page, :per_page)
     end
 end
