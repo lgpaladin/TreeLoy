@@ -10,10 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :teams  
+  resources :teams
   resources :sections
-  
-  
+
   root to: 'users#show'
 
 end

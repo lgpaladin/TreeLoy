@@ -43,6 +43,34 @@
     <%= form.label :state %>
     <%= form.text_field :state %>
   </div>
+  
+  <div class="field">
+    <%= form.label :section %>
+    <%= collection_select(:task, :section_id, Section.all, :id, :title,) %>
+  </div>
+
+  <div class="field">
+    <%= link_to "Add", '#', id: 'add_user'%>
+  </div>
+  <div id="user_conteiner">
+    <%= form.label :developers %>
+    <div class="field user_main" style="margin: 10px;">
+      <%= form.collection_select :'developer_ids[]', project.team.users, :id, :name, {}, { class: 'user_select'} %>
+      <%= link_to 'Delete', '#', class: 'delete_user' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :developers %>
+    <%= form.collection_select(:developer_ids, project.team.users, :id, :name,{}, {multiple: true})
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :developers %>
+    <%= form.collection_check_boxes(:developer_ids, project.team.users, :id, :name) %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>

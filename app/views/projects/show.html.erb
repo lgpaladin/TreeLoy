@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
- <div>
+<div id="project-block" project_id="<%= @project.id %>">
   <div>
     <p>
       <strong>Title:</strong>
@@ -10,11 +10,29 @@
       <strong>State:</strong>
       <%= @project.state %>
     </p>
+  </div>
+
+  <div class="form-check">
+  
+    <p>
+      <% @sections.each do |section| %>
+        
+        <%= check_box_tag(:sections, section.id, true, class: 'form-check-input section-point') %>
+        <%= label_tag(section.id, section.title, class: 'form-check-label', style: 'margin-right: 20px') %>
+
+      <% end %>
+    </p>
+    <p>
+<!--      <%=
+          #collection_check_boxes :section_id, Section.all, :id, :title
+      %>
+-->
+    </p>
 
   </div>
 
   <% @lists.each do |list| %>
-    <div class="card bg-light mb-3" style="float: left; width: 24%; margin: 5px; height: 40vw">
+    <div class="card bg-light mb-3 list-block" style="float: left; width: 24%; margin: 5px; min-height: 40vw; z-index: -100; height: auto" list_id="<%= list.id %>">
       <div class="card-header"> 
         <div style="float: left; width: 100px">
           <%= list.title %>
@@ -24,12 +42,13 @@
         </div> 
       </div>
       
-      <div class="card-body">
-<!--    <h5 class="card-title">Light card title</h5>
--->        
+      <div class="card-body" style='z-index: -100'>
+
         <% list.tasks.each do |task| %>
           <p class="card-text">
-            <%= link_to(task.title, project_list_task_path(project_id: @project.id,list_id: list.id, id: task.id))%>
+
+            <%= render partial: 'tasks/task', locals: {task: task} %>  
+
           </p>  
         <% end %>
       </div>
