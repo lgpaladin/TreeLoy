@@ -8,9 +8,9 @@
     	</div>
   </div>	
   <div  class='card-body'>
-  	
+  	<p><small class="text-muted"> Date of completion: <%= task.data_end.strftime('%d %b %Y') %> </small> </p>
    	<h6 class='card-subtitle mb-2 text-muted'> <%= task.state %> </h6>
-   	<p  class='card-text' style='font-size: 16px'>   <%= task.description %></p>
+   	<p  class='card-text' style='font-size: 16px'> <%= task.description %> </p>
 
     <%= link_to( 'Back'  , project_path(task.project), class: 'btn btn-primary') %>
     <%= link_to( 'Edit'  , edit_project_list_task_path(project_id: task.project.id, list_id: task.list.id, id: task.id), class: 'btn btn-info') %>
