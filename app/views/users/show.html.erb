@@ -1,12 +1,38 @@
+<style>
+#email{
+  color:green;
+}
+.field{
+  font-style: bold;
+}
+</style>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @user.email %>
+  <% parking_spases.each do |parking_spase|%>
+    <button class="parking_button" parking_id="<%= parking_spase.id%>">Parking button</button>
+    <strong id='parking_template_<%= parking_spase.id %>' class="parking_template">Tempalete data</strong>    
+  <% end %>
 </p>
+<script type="text/javascript">
+  $(document).ready(->(){
+    $('.parking_template').hide()
+  })
+  
+  $('.parking_button').click(-> (){
+    parking_id = $(this).attr('parking_id')
+    $('.parking_template').hide()
+    $('#parking_template_'+parking_id).show()
+  })
+</script>
+
+
+<strong >Email:</strong>
+<%= @user.email %>
 
 <p>
-  <strong>Teams:</strong>
+  <strong class="parking_template">Teams:</strong>
   <% @teams.each do |team| %>
   	<%= team.title %>
   	<p>
