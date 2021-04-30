@@ -11,7 +11,7 @@ class ProjectsFilterService
 
   def by_query
     if @query
-      @result = Project.select("distinct(id)").where("title LIKE (%#{@query}%) OR description LIKE (% #{query}%)")
+      @result = Project.select("distinct(id)").where("title LIKE \'%#{@query}%\' OR description LIKE \'% #{query}%\'")
     else
       @result = Project.all
     end
